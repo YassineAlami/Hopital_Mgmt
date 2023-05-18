@@ -1,0 +1,19 @@
+<div *ngIf="Hospitalisation">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>date entree</th>
+                <th>date sortie</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let hospitl of Hospitalisation">
+                <td>{{ hospitl.id }}</td>
+                <td>{{ hospitl.dateEntree }}</td>
+                <td>{{ hospitl.dateSortie }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,24 @@
+<div *ngIf="Patents">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>tel</th>
+                <th>genre</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let patient of Patents">
+                <td>{{ patient.id }}</td>
+                <td>{{ patient.nom }}</td>
+                <td>{{ patient.prenom }}</td>
+                <td>{{ patient.email }}</td>
+                <td>{{ patient.tel }}</td>
+                <td>{{ patient.genre}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
