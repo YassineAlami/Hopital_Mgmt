@@ -1,1 +1,9 @@
-<p>add-service-garde works!</p>
+<form (ngSubmit)="onSubmit()">
+    <label for="Id">First Name:</label>
+    <input id="Id" [(ngModel)]="servicegarde.id" name="Id" required>
+
+    <label for="dateService">Last Name:</label>
+    <input id="dateService" [(ngModel)]="servicegarde.dateservice" name="dateService" required>
+
+    <button type="submit">Create</button>
+</form>
