@@ -1,1 +1,17 @@
-<p>add-patient works!</p>
+<form (ngSubmit)="onSubmit()">
+    <label for="firstName">First Name:</label>
+    <input id="firstName" [(ngModel)]="Patent.nom" name="firstName" required>
+
+    <label for="lastName">Last Name:</label>
+    <input id="lastName" [(ngModel)]="Patent.prenom" name="lastName" required>
+
+    <label for="email">Email:</label>
+    <input id="email" [(ngModel)]="Patent.email" name="email" required>
+
+    <label for="email">Email:</label>
+    <input id="email" [(ngModel)]="Patent.tel" name="tel" required>
+
+    <label for="email">Email:</label>
+    <input id="email" [(ngModel)]="Patent.genre" name="genre" required>
+    <button type="submit">Create</button>
+</form>

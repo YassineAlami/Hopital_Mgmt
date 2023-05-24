@@ -26,20 +26,10 @@ public class PatentController
 		return repo.findAll();
 	}
 
-	@PostMapping("/Patients")
+	@PostMapping("/AddPatients")
 	public Patient createPatient(@RequestBody Patient pt)
 	{
 		return repo.save(pt);
-		/*
-		* {
-    	*	"nom":"genos",
-    	*	"prenom":"Genos",
-    	*	"email":"Genos@gmail.com",
-    	*	"tel":"0611111111",
-    	*	"genre":"M",
-    	*	"datenaissance": "2010-12-09"
-		*	}
-		*/
 	}
 	
 	@GetMapping("/Patients/{id}")

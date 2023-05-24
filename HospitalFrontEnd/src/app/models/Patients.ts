@@ -5,6 +5,7 @@ export class Patients{
 	email!: string;
 	tel!: string;
 	genre!: string;
+  datenaissance! :string;
 
   constructor (){}
 }

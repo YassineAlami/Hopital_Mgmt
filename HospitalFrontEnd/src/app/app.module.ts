@@ -18,6 +18,7 @@ import { ListDossierMedicauxComponent } from './list-dossier-medicaux/list-dossi
 import { ListHospitalisationsComponent } from './list-hospitalisations/list-hospitalisations.component';
 import { AddServiceGardeComponent } from './add-service-garde/add-service-garde.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
   imports: [
     BrowserModule,
     FullCalendarModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule
   ],
