@@ -26,7 +26,7 @@ public class AdminController
 	@Autowired
 	private IAdmin repo;
 	
-	@GetMapping("/Admins")
+	@GetMapping("/AddAdmins")
 	public List<Admin> getAllAdmins ()
 	{
 		return repo.findAll();

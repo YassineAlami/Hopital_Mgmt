@@ -8,11 +8,8 @@ import { Patients } from '../models/Patients';
 export class PatientsService {
   private apiUrl = 'http://localhost:8080/api/v1/Patients';
   private apiUrlAdd = 'http://localhost:8080/api/v1/AddPatients';
-  constructor(private http: HttpClient) {
-
-  }
+  constructor(private http: HttpClient) {}
   createPatient(Patient: Patients): Observable<Object> {
-    console.log('atient');
     return this.http.post<Patients>(`${this.apiUrlAdd}`, Patient);
   }
   getAllPatients(): Observable<Patients[]> {

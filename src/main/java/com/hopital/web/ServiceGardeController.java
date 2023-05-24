@@ -32,7 +32,7 @@ public class ServiceGardeController
 		return repo.findAll();
 	}
 	
-	@PostMapping("/ServicesGardes")
+	@PostMapping("/AddServicesGardes")
 	public ServiceGarde createServiceGarde (@RequestBody ServiceGarde sg)
 	{
 		return repo.save(sg);

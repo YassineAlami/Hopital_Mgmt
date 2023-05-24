@@ -32,7 +32,7 @@ public class TypeMaladieController
 		return repo.findAll();
 	}
 
-	@PostMapping("/TypesMaladies")
+	@PostMapping("/AddTypesMaladies")
 	public TypeMaladie createLit (@RequestBody TypeMaladie tm)
 	{
 		return repo.save(tm);

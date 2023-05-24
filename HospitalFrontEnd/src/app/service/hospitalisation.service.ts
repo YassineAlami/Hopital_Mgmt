@@ -8,9 +8,13 @@ import { Hospitalisations } from '../models/Hospitalistations';
 })
 export class HospitalisationService {
   private apiUrl = 'http://localhost:8080/api/v1/Hospitalisations';
+  private apiUrlAdd = 'http://localhost:8080/api/v1/AddHospitalisations';
 
   constructor(private http: HttpClient) {
 
+  }
+  createHospitalisations(Hospitalisations: Hospitalisations): Observable<Object> {
+    return this.http.post<Hospitalisations>(`${this.apiUrlAdd}`, Hospitalisations);
   }
   getAllHospitalisations(): Observable<Hospitalisations[]> {
     return this.http.get<Hospitalisations[]>(this.apiUrl);

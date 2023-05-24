@@ -32,7 +32,7 @@ public class OperationController
 		return repo.findAll();
 	}
 
-	@PostMapping("/Operations")
+	@PostMapping("/AddOperations")
 	public Operation createLit (@RequestBody Operation o)
 	{
 		return repo.save(o);

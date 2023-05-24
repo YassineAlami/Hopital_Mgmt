@@ -32,7 +32,7 @@ public class SpecialiteController
 		return repo.findAll();
 	}
 
-	@PostMapping("/Specialites")
+	@PostMapping("/AddSpecialites")
 	public Specialite createLit (@RequestBody Specialite s)
 	{
 		return repo.save(s);

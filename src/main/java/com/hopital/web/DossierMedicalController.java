@@ -26,7 +26,7 @@ public class DossierMedicalController
 		return repo.findAll();
 	}
 
-	@PostMapping("/DossiersMedicaux")
+	@PostMapping("/AddDossiersMedicaux")
 	public DossierMedical createDossier (@RequestBody DossierMedical dm)
 	{
 		return repo.save(dm);

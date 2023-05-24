@@ -32,7 +32,7 @@ public class ChambreController
 		return repo.findAll();
 	}
 	
-	@PostMapping("/Chambres")
+	@PostMapping("/AddChambres")
 	public Chambre createChambre(@RequestBody Chambre ch)
 	{
 		return repo.save(ch);

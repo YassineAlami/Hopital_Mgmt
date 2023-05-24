@@ -32,7 +32,7 @@ public class TraitementController
 		return repo.findAll();
 	}
 
-	@PostMapping("/Traitements")
+	@PostMapping("/AddTraitements")
 	public Traitement createLit (@RequestBody Traitement t)
 	{
 		return repo.save(t);

@@ -33,7 +33,7 @@ public class TypeVaccinController
 		return repo.findAll();
 	}
 
-	@PostMapping("/TypesVaccins")
+	@PostMapping("/AddTypesVaccins")
 	public TypeVaccin createLit (@RequestBody TypeVaccin tv)
 	{
 		return repo.save(tv);
