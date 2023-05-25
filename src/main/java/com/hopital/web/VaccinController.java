@@ -71,7 +71,6 @@ public class VaccinController
 	public ResponseEntity<Map<String, Boolean>> deleteLit (@PathVariable long id)
 	{
 		Vaccin v = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Vaccin avec cet ID : "+id));
-
 		repo.delete(v);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("Deleted", Boolean.TRUE);
