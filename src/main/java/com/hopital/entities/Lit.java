@@ -7,10 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 
-
+@Data @NoArgsConstructor @RequiredArgsConstructor
 @Entity
 @Validated
 @Table(name = "lits")
@@ -19,52 +22,12 @@ public class Lit
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@NonNull
 	@Column(unique = true)
 	private int num;
+	@NonNull
 	private boolean sipris;
-	
+	@NonNull
 	@ManyToOne
 	private Chambre chambre;
-	
-	public Lit () {}
-
-	public Lit(int num, boolean sipris) 
-	{
-		super();
-		this.num = num;
-		this.sipris = sipris;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public int getNum() {
-		return num;
-	}
-
-	public void setNum(int num) {
-		this.num = num;
-	}
-
-	public boolean isSipris() {
-		return sipris;
-	}
-
-	public void setSipris(boolean sipris) {
-		this.sipris = sipris;
-	}
-
-	//@JsonManagedReference
-	public Chambre getChambre() {
-		return chambre;
-	}
-
-	public void setChambre(Chambre chambre) {
-		this.chambre = chambre;
-	}
 }

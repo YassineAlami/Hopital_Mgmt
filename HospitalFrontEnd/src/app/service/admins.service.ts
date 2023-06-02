@@ -16,6 +16,7 @@ export class AdminsService {
   createAdmins(admins: Admins): Observable<Object> {
     return this.http.post<Admins>(`${this.apiUrlAdd}`, Admins);
   }
+
   getAllAdmins(): Observable<Admins[]> {
     return this.http.get<Admins[]>(this.apiUrl);
   }

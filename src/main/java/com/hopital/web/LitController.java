@@ -3,8 +3,10 @@ package com.hopital.web;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.hopital.service.ChambreService;
+import com.hopital.service.LitManager;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,22 +16,19 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.hopital.entities.Chambre;
 import com.hopital.entities.Lit;
 import com.hopital.exception.ResourceNotFoundException;
-import com.hopital.repo.IChambre;
-import com.hopital.repo.ILit;
 
 @RestController
 @RequestMapping("/api/v1")
+@RequiredArgsConstructor
 public class LitController
 {
-	@Autowired
-	private ILit repo;
-	
-	@Autowired
-	private IChambre chrepo;
+	@NonNull
+	private LitManager repo;
+	@NonNull
+	private ChambreService crepo;
 
 	@GetMapping("/Lits")
 	public List<Lit> getLit()
@@ -40,7 +39,7 @@ public class LitController
 	@PostMapping("/Lits/{idch}")
 	public Lit createLit (@RequestBody Lit l,@PathVariable long idch)
 	{
-		Chambre ch = chrepo.findById(idch).orElseThrow(()-> new ResourceNotFoundException("Pas de Chanbre avec cet ID : "+idch));
+		Chambre ch = crepo.findById(idch).orElseThrow(()-> new ResourceNotFoundException("Pas de Chanbre avec cet ID : "+idch));
 		
 		l.setChambre(ch);
 		

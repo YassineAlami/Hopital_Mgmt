@@ -3,8 +3,9 @@ package com.hopital.web;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.hopital.service.ServiceGardeService;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,17 +15,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.hopital.entities.ServiceGarde;
 import com.hopital.exception.ResourceNotFoundException;
-import com.hopital.repo.IServiceGarde;
 
 @RestController
 @RequestMapping("api/v1")
+@RequiredArgsConstructor
 public class ServiceGardeController 
 {
-	@Autowired
-	private IServiceGarde repo;
+	@NonNull
+	private ServiceGardeService repo;
 	
 	@GetMapping("/ServicesGardes")
 	public List<ServiceGarde> getAllServicesGardes()

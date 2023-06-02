@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.hopital.service.TypeVaccinService;
+import com.hopital.service.VaccinService;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,13 +27,13 @@ import com.hopital.repo.IVaccin;
 
 @RestController
 @RequestMapping("api/v1")
+@RequiredArgsConstructor
 public class VaccinController 
 {
-	@Autowired
-	private IVaccin repo;
-	
-	@Autowired
-	private ITypeVaccin tvrepo;
+	@NonNull
+	private VaccinService repo;
+	@NonNull
+	private TypeVaccinService tvrepo;
 	
 	@GetMapping("/Vaccins")
 	public List<Vaccin> getLit()

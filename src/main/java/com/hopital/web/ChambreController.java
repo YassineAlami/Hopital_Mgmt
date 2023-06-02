@@ -3,7 +3,11 @@ package com.hopital.web;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
+import com.hopital.service.ChambreService;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,10 +25,11 @@ import com.hopital.repo.IChambre;
 
 @RestController
 @RequestMapping("/api/v1")
+@RequiredArgsConstructor
 public class ChambreController
 {
-	@Autowired
-	private IChambre repo;
+	@NonNull
+	private ChambreService repo;
 
 	@GetMapping("/Chambres")
 	public List<Chambre> getAllChambres()
@@ -50,7 +55,6 @@ public class ChambreController
 	public ResponseEntity<Chambre> updateChambre (@RequestBody Chambre chDetails,@PathVariable long id) 
 	{
 		Chambre ch = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Chambre avec cet ID : "+id));
-		
 		ch.setNum(chDetails.getNum());
 		ch.setType(chDetails.getType());
 		

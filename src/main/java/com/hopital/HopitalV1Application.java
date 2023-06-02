@@ -12,8 +12,7 @@ import com.hopital.repo.IMedecin;
 @SpringBootApplication
 public class HopitalV1Application implements CommandLineRunner
 {
-	@Autowired
-	private IMedecin repo;
+
 	
 	public static void main(String[] args) {
 		SpringApplication.run(HopitalV1Application.class, args);

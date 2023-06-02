@@ -3,7 +3,11 @@ package com.hopital.web;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
+import com.hopital.service.AdminService;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,11 +25,12 @@ import com.hopital.repo.IAdmin;
 
 @RestController
 @RequestMapping("/api/v1")
+@RequiredArgsConstructor
 public class AdminController 
 {
-	@Autowired
-	private IAdmin repo;
-	
+	@NonNull
+	private AdminService repo;
+
 	@GetMapping("/AddAdmins")
 	public List<Admin> getAllAdmins ()
 	{
@@ -41,19 +46,16 @@ public class AdminController
 	@GetMapping("/Admins/{id}")
 	public ResponseEntity<Admin> getAdminById(@PathVariable long id)
 	{
-		Admin ad = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas d'Admin avec cet ID : "+id));
-		return ResponseEntity.ok(ad);
+		return ResponseEntity.ok(repo.findById(id).get());
 	}
 	
 	@PutMapping("/Admins/{id}")
 	public ResponseEntity<Admin> ubdateAdmin (@PathVariable long id,@RequestBody Admin adDetails)
 	{
-		Admin ad = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas d'Admin avec cet ID : "+id));
-		
+		Admin ad = repo.findById(id).get();
 		ad.setNom(adDetails.getNom());
 		ad.setPrenom(adDetails.getPrenom());
 		ad.setEmail(adDetails.getEmail());
-		
 		Admin updatedAdmin = repo.save(ad);
 		return ResponseEntity.ok(updatedAdmin);
 	}

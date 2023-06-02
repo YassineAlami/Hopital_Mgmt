@@ -3,22 +3,22 @@ package com.hopital.web;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.hopital.service.DossierMedicalService;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import com.hopital.entities.DossierMedical;
 import com.hopital.exception.ResourceNotFoundException;
-import com.hopital.repo.IDossierMedical;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("api/v1")
+@RequiredArgsConstructor
 public class DossierMedicalController
 {
-	@Autowired
-	private IDossierMedical repo;
+	@NonNull
+	private DossierMedicalService repo;
 	
 	@GetMapping("/DossiersMedicaux")
 	public List<DossierMedical> getLit()

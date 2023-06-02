@@ -3,26 +3,25 @@ package com.hopital.web;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.hopital.service.DossierMedicalService;
+import com.hopital.service.HospitalisationService;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import com.hopital.entities.DossierMedical;
 import com.hopital.entities.Hospitalisation;
 import com.hopital.exception.ResourceNotFoundException;
-import com.hopital.repo.IDossierMedical;
-import com.hopital.repo.IHospitalisation;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("api/v1")
+@RequiredArgsConstructor
 public class HospitalisationController 
 {
-	@Autowired
-	private IHospitalisation repo;
-	
-	@Autowired
-	private IDossierMedical dmrepo;
+	@NonNull
+	private HospitalisationService repo;
+	@NonNull
+	private DossierMedicalService dmrepo;
 	
 	
 	@GetMapping("/Hospitalisations")

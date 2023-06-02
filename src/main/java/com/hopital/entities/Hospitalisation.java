@@ -10,8 +10,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-@Data
+@Data @NoArgsConstructor @RequiredArgsConstructor
 @Entity
 @Table(name = "hospitalisation")
 public class Hospitalisation 
@@ -19,18 +22,10 @@ public class Hospitalisation
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@NonNull
 	private LocalDate dateEntree;
+	@NonNull
 	private LocalDate dateSortie;
-	
 	@ManyToOne
 	private DossierMedical dossiermedical;
-	
-	public Hospitalisation() {}
-
-	public Hospitalisation(LocalDate dateEntree, LocalDate dateSortie) 
-	{
-		super();
-		this.dateEntree = dateEntree;
-		this.dateSortie = dateSortie;
-	}	
 }
