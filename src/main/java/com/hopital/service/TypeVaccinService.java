@@ -37,7 +37,7 @@ public class TypeVaccinService implements ITypeVaccin {
 
     @Override
     public List<TypeVaccin> findAllById(Iterable<Long> longs) {
-        return null;
+        return repo.findAllById(longs);
     }
 
     @Override
@@ -46,48 +46,38 @@ public class TypeVaccinService implements ITypeVaccin {
     }
 
     @Override
-    public void deleteById(Long aLong) {
-
-    }
+    public void deleteById(Long aLong) { repo.deleteById(aLong); }
 
     @Override
-    public void delete(TypeVaccin entity) {
-
-    }
+    public void delete(TypeVaccin entity) { repo.delete(entity); }
 
     @Override
-    public void deleteAllById(Iterable<? extends Long> longs) {
-
-    }
+    public void deleteAllById(Iterable<? extends Long> longs) { repo.deleteAllById(longs); }
 
     @Override
-    public void deleteAll(Iterable<? extends TypeVaccin> entities) {
-
-    }
+    public void deleteAll(Iterable<? extends TypeVaccin> entities) { repo.deleteAll(entities); }
 
     @Override
-    public void deleteAll() {
-
-    }
+    public void deleteAll() { repo.deleteAll(); }
 
     @Override
     public <S extends TypeVaccin> S save(S entity) {
-        return null;
+        return repo.save(entity);
     }
 
     @Override
     public <S extends TypeVaccin> List<S> saveAll(Iterable<S> entities) {
-        return null;
+        return repo.saveAll(entities);
     }
 
     @Override
     public Optional<TypeVaccin> findById(Long aLong) {
-        return Optional.empty();
+        return Optional.ofNullable(repo.findById(aLong).get());
     }
 
     @Override
     public boolean existsById(Long aLong) {
-        return false;
+        return repo.existsById(aLong);
     }
 
     @Override
@@ -142,7 +132,7 @@ public class TypeVaccinService implements ITypeVaccin {
 
     @Override
     public <S extends TypeVaccin> List<S> findAll(Example<S> example) {
-        return null;
+        return repo.findAll(example);
     }
 
     @Override
@@ -162,7 +152,7 @@ public class TypeVaccinService implements ITypeVaccin {
 
     @Override
     public <S extends TypeVaccin> boolean exists(Example<S> example) {
-        return false;
+        return repo.exists(example);
     }
 
     @Override

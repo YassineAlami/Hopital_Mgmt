@@ -10,14 +10,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.hopital.entities.TypeVaccin;
 import com.hopital.entities.Vaccin;
@@ -25,6 +18,7 @@ import com.hopital.exception.ResourceNotFoundException;
 import com.hopital.repo.ITypeVaccin;
 import com.hopital.repo.IVaccin;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("api/v1")
 @RequiredArgsConstructor
@@ -36,31 +30,27 @@ public class VaccinController
 	private TypeVaccinService tvrepo;
 	
 	@GetMapping("/Vaccins")
-	public List<Vaccin> getLit()
+	public List<Vaccin> getVaccins()
 	{
 		return repo.findAll();
 	}
 
-	@PostMapping("/Vaccins/{idtv}")
-	public Vaccin createLit (@RequestBody Vaccin v ,@PathVariable long idtv )
+	@PostMapping("/AddVaccins")
+	public Vaccin createVaccin (@RequestBody Vaccin v)
 	{
-		TypeVaccin tv = tvrepo.findById(idtv).orElseThrow(()-> new ResourceNotFoundException("Pas de Type de Vaccin avec cet ID : "+idtv));
-		
-		v.setTypevaccin(tv);
-		
 		return repo.save(v);
 	}
 
 	@GetMapping("/Vaccins/{id}")
-	public ResponseEntity<Vaccin> getLitById(@PathVariable long id)
+	public ResponseEntity<Vaccin> getVaccinById(@PathVariable long id)
 	{
 		Vaccin v = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Vaccin avec cet ID : "+id));
 
 		return ResponseEntity.ok(v);
 	}
 
-	@PutMapping("/Vaccins/{id}")
-	public ResponseEntity<Vaccin> updateChambre (@RequestBody Vaccin vDetails, @PathVariable long id) 
+	@PutMapping("/updateVaccins/{id}")
+	public ResponseEntity<Vaccin> updateVaccin (@RequestBody Vaccin vDetails, @PathVariable long id)
 	{
 		Vaccin v = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Vaccin avec cet ID : "+id));
 
@@ -71,7 +61,7 @@ public class VaccinController
 		return ResponseEntity.ok(updatedV);
 	}
 
-	@DeleteMapping("/Vaccins/{id}")
+	@DeleteMapping("/DeleteVaccins/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteLit (@PathVariable long id)
 	{
 		Vaccin v = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Vaccin avec cet ID : "+id));

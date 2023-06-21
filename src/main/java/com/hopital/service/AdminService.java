@@ -52,19 +52,13 @@ public class AdminService implements IAdmin {
     }
 
     @Override
-    public void deleteAllById(Iterable<? extends Long> longs) {
-
-    }
+    public void deleteAllById(Iterable<? extends Long> longs) { }
 
     @Override
-    public void deleteAll(Iterable<? extends Admin> entities) {
-
-    }
+    public void deleteAll(Iterable<? extends Admin> entities) { }
 
     @Override
-    public void deleteAll() {
-
-    }
+    public void deleteAll() { }
 
     @Override
     public <S extends Admin> S save(S entity) {
@@ -78,7 +72,6 @@ public class AdminService implements IAdmin {
 
     @Override
     public Optional<Admin> findById(Long aLong) {
-
         Admin adm = repo.findById(aLong).orElseThrow(()-> new ResourceNotFoundException("Pas de Patient avec cet ID : "+aLong));
         return Optional.ofNullable(adm);
     }
@@ -89,9 +82,7 @@ public class AdminService implements IAdmin {
     }
 
     @Override
-    public void flush() {
-
-    }
+    public void flush() { }
 
     @Override
     public <S extends Admin> S saveAndFlush(S entity) {
@@ -104,19 +95,13 @@ public class AdminService implements IAdmin {
     }
 
     @Override
-    public void deleteAllInBatch(Iterable<Admin> entities) {
-
-    }
+    public void deleteAllInBatch(Iterable<Admin> entities) { }
 
     @Override
-    public void deleteAllByIdInBatch(Iterable<Long> longs) {
-
-    }
+    public void deleteAllByIdInBatch(Iterable<Long> longs) { }
 
     @Override
-    public void deleteAllInBatch() {
-
-    }
+    public void deleteAllInBatch() { }
 
     @Override
     public Admin getOne(Long aLong) {
@@ -131,7 +116,7 @@ public class AdminService implements IAdmin {
 
     @Override
     public Admin getReferenceById(Long aLong) {
-        return null;
+        return repo.getReferenceById(aLong);
     }
 
     @Override
@@ -165,7 +150,5 @@ public class AdminService implements IAdmin {
     }
 
     @Override
-    public <S extends Admin, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
-        return null;
-    }
+    public <S extends Admin, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) { return null;}
 }

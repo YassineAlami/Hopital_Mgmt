@@ -40,9 +40,7 @@ public class LitController
 	public Lit createLit (@RequestBody Lit l,@PathVariable long idch)
 	{
 		Chambre ch = crepo.findById(idch).orElseThrow(()-> new ResourceNotFoundException("Pas de Chanbre avec cet ID : "+idch));
-		
 		l.setChambre(ch);
-		
 		return repo.save(l);
 	}
 
@@ -50,19 +48,16 @@ public class LitController
 	public ResponseEntity<Lit> getLitById(@PathVariable long id)
 	{
 		Lit l = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Lit avec cet ID : "+id));
-
 		return ResponseEntity.ok(l);
 	}
 
 	@PutMapping("/Lits/{id}")
-	public ResponseEntity<Lit> updateChambre (@RequestBody Lit lDetails, @PathVariable long id) 
+	public ResponseEntity<Lit> updateLit (@RequestBody Lit lDetails, @PathVariable long id)
 	{
 		Lit l = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Lit avec cet ID : "+id));
-
 		l.setNum(lDetails.getNum());
 		l.setSipris(lDetails.isSipris());
 		l.setChambre(lDetails.getChambre());
-
 		Lit updatedL = repo.save(l);
 		return ResponseEntity.ok(updatedL);
 	}
@@ -71,7 +66,6 @@ public class LitController
 	public ResponseEntity<Map<String, Boolean>> deleteLit (@PathVariable long id)
 	{
 		Lit l = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Lit avec cet ID : "+id));
-
 		repo.delete(l);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("Deleted", Boolean.TRUE);

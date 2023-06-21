@@ -38,7 +38,7 @@ public class TraitementService implements ITraitement {
 
     @Override
     public List<Traitement> findAllById(Iterable<Long> longs) {
-        return null;
+        return repo.findAllById(longs);
     }
 
     @Override
@@ -47,33 +47,23 @@ public class TraitementService implements ITraitement {
     }
 
     @Override
-    public void deleteById(Long aLong) {
-
-    }
+    public void deleteById(Long aLong) { repo.deleteById(aLong);}
 
     @Override
-    public void delete(Traitement entity) {
-
-    }
+    public void delete(Traitement entity) { repo.delete(entity); }
 
     @Override
-    public void deleteAllById(Iterable<? extends Long> longs) {
-
-    }
+    public void deleteAllById(Iterable<? extends Long> longs) { repo.deleteAllById(longs); }
 
     @Override
-    public void deleteAll(Iterable<? extends Traitement> entities) {
-
-    }
+    public void deleteAll(Iterable<? extends Traitement> entities) { repo.deleteAll(entities); }
 
     @Override
-    public void deleteAll() {
-
-    }
+    public void deleteAll() { repo.deleteAll(); }
 
     @Override
     public <S extends Traitement> S save(S entity) {
-        return null;
+        return repo.save(entity);
     }
 
     @Override
@@ -83,12 +73,12 @@ public class TraitementService implements ITraitement {
 
     @Override
     public Optional<Traitement> findById(Long aLong) {
-        return Optional.empty();
+        return Optional.ofNullable(repo.findById(aLong).get());
     }
 
     @Override
     public boolean existsById(Long aLong) {
-        return false;
+        return repo.existsById(aLong);
     }
 
     @Override
@@ -163,7 +153,7 @@ public class TraitementService implements ITraitement {
 
     @Override
     public <S extends Traitement> boolean exists(Example<S> example) {
-        return false;
+        return repo.exists(example);
     }
 
     @Override

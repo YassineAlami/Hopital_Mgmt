@@ -37,8 +37,6 @@ import { FormsModule } from '@angular/forms';
     ListDossierMedicauxComponent,
     ListHospitalisationsComponent,
     AddServiceGardeComponent,
-
-
   ],
   imports: [
     BrowserModule,

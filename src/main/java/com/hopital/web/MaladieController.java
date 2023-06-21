@@ -32,13 +32,13 @@ public class MaladieController
 	private TypeMaladieService tmrepo;
 
 	@GetMapping("/Maladies")
-	public List<Maladie> getLit()
+	public List<Maladie> getMaladie()
 	{
 		return repo.findAll();
 	}
 
 	@PostMapping("/Maladies/{idtm}")
-	public Maladie createLit (@RequestBody Maladie m ,@PathVariable long idtm)
+	public Maladie createMaladie (@RequestBody Maladie m ,@PathVariable long idtm)
 	{
 		TypeMaladie tm = tmrepo.findById(idtm).orElseThrow(()-> new ResourceNotFoundException("Pas de Type de Maladie avec cet ID : "+idtm));
 		
@@ -48,7 +48,7 @@ public class MaladieController
 	}
 
 	@GetMapping("/Maladies/{id}")
-	public ResponseEntity<Maladie> getLitById(@PathVariable long id)
+	public ResponseEntity<Maladie> getMaladieById(@PathVariable long id)
 	{
 		Maladie m = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Maladie avec cet ID : "+id));
 
@@ -56,22 +56,19 @@ public class MaladieController
 	}
 
 	@PutMapping("/Maladies/{id}")
-	public ResponseEntity<Maladie> updateChambre (@RequestBody Maladie mDetails, @PathVariable long id) 
+	public ResponseEntity<Maladie> updateMaladie (@RequestBody Maladie mDetails, @PathVariable long id)
 	{
 		Maladie m = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Maladie avec cet ID : "+id));
-
 		m.setLibelle(mDetails.getLibelle());
 		m.setTypemaladie(mDetails.getTypemaladie());
-		
 		Maladie updatedM = repo.save(m);
 		return ResponseEntity.ok(updatedM);
 	}
 
 	@DeleteMapping("/Maladies/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteLit (@PathVariable long id)
+	public ResponseEntity<Map<String, Boolean>> deleteMaladie (@PathVariable long id)
 	{
 		Maladie m = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Maladie avec cet ID : "+id));
-
 		repo.delete(m);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("Deleted", Boolean.TRUE);

@@ -36,7 +36,7 @@ public class TypeMaladieService implements ITypeMaladie {
 
     @Override
     public List<TypeMaladie> findAllById(Iterable<Long> longs) {
-        return null;
+        return repo.findAllById(longs);
     }
 
     @Override
@@ -45,38 +45,28 @@ public class TypeMaladieService implements ITypeMaladie {
     }
 
     @Override
-    public void deleteById(Long aLong) {
-
-    }
+    public void deleteById(Long aLong) { repo.deleteById(aLong);  }
 
     @Override
-    public void delete(TypeMaladie entity) {
-
-    }
+    public void delete(TypeMaladie entity) { repo.delete(entity); }
 
     @Override
-    public void deleteAllById(Iterable<? extends Long> longs) {
-
-    }
+    public void deleteAllById(Iterable<? extends Long> longs) { repo.deleteAllById(longs);  }
 
     @Override
-    public void deleteAll(Iterable<? extends TypeMaladie> entities) {
-
-    }
+    public void deleteAll(Iterable<? extends TypeMaladie> entities) { repo.deleteAll(entities); }
 
     @Override
-    public void deleteAll() {
-
-    }
+    public void deleteAll() { repo.deleteAll(); }
 
     @Override
     public <S extends TypeMaladie> S save(S entity) {
-        return null;
+        return repo.save(entity);
     }
 
     @Override
     public <S extends TypeMaladie> List<S> saveAll(Iterable<S> entities) {
-        return null;
+        return repo.saveAll(entities);
     }
 
     @Override
@@ -86,7 +76,7 @@ public class TypeMaladieService implements ITypeMaladie {
 
     @Override
     public boolean existsById(Long aLong) {
-        return false;
+        return repo.existsById(aLong);
     }
 
     @Override
@@ -96,7 +86,7 @@ public class TypeMaladieService implements ITypeMaladie {
 
     @Override
     public <S extends TypeMaladie> S saveAndFlush(S entity) {
-        return null;
+        return repo.saveAndFlush(entity);
     }
 
     @Override
@@ -141,7 +131,7 @@ public class TypeMaladieService implements ITypeMaladie {
 
     @Override
     public <S extends TypeMaladie> List<S> findAll(Example<S> example) {
-        return null;
+        return repo.findAll(example);
     }
 
     @Override
@@ -161,7 +151,7 @@ public class TypeMaladieService implements ITypeMaladie {
 
     @Override
     public <S extends TypeMaladie> boolean exists(Example<S> example) {
-        return false;
+        return repo.exists(example);
     }
 
     @Override

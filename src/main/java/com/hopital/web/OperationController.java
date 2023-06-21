@@ -28,19 +28,19 @@ public class OperationController
 	private OperationService repo;
 		
 	@GetMapping("/Operations")
-	public List<Operation> getLit()
+	public List<Operation> getOperation()
 	{
 		return repo.findAll();
 	}
 
 	@PostMapping("/AddOperations")
-	public Operation createLit (@RequestBody Operation o)
+	public Operation createOperation (@RequestBody Operation o)
 	{
 		return repo.save(o);
 	}
 
 	@GetMapping("/Operations/{id}")
-	public ResponseEntity<Operation> getLitById(@PathVariable long id)
+	public ResponseEntity<Operation> getOperationById(@PathVariable long id)
 	{
 		Operation o = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Operation avec cet ID : "+id));
 
@@ -48,21 +48,18 @@ public class OperationController
 	}
 
 	@PutMapping("/Operations/{id}")
-	public ResponseEntity<Operation> updateChambre (@RequestBody Operation oDetails, @PathVariable long id) 
+	public ResponseEntity<Operation> updateOperation (@RequestBody Operation oDetails, @PathVariable long id)
 	{
 		Operation o = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Operation avec cet ID : "+id));
-
 		o.setLibelle(oDetails.getLibelle());
-
 		Operation updatedO = repo.save(o);
 		return ResponseEntity.ok(updatedO);
 	}
 
 	@DeleteMapping("/Operations/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteLit (@PathVariable long id)
+	public ResponseEntity<Map<String, Boolean>> deleteOperation (@PathVariable long id)
 	{
 		Operation o = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Operation avec cet ID : "+id));
-
 		repo.delete(o);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("Deleted", Boolean.TRUE);

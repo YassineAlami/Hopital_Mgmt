@@ -12,8 +12,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-@Data
+@Data @NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "medecins")
 public class Medecin 
@@ -22,30 +26,21 @@ public class Medecin
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	private long id;
+	@NonNull
 	private String nom;
+	@NonNull
 	private String prenom;
+	@NonNull
 	private String email;
+	@NonNull
 	private String tel;
+	@NonNull
 	private String genre;
-	
+	@NonNull
 	@ManyToOne
 	private Specialite specialite;
-	
+	@NonNull
 	@ManyToMany(mappedBy = "medecins")
 	private List<Patient> patients = new ArrayList<>();
-	
-	/*
-	 * @ManyToMany(mappedBy = "services_garde") private List<ServiceGarde>
-	 * servicesgarde = new ArrayList<>();
-	 */
-	public Medecin() {}
-	
-	public Medecin(String nom, String prenom, String email, String tel, String genre) 
-	{
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.tel = tel;
-		this.genre = genre;
-	}	
+
 }

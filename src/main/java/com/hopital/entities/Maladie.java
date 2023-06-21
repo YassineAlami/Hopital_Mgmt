@@ -15,8 +15,12 @@ import javax.persistence.Table;
 
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-@Data
+@Data @NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table (name = "maladies")
 public class Maladie 
@@ -24,6 +28,7 @@ public class Maladie
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@NonNull
 	private String libelle;
 	
 	@ManyToOne
@@ -35,14 +40,6 @@ public class Maladie
 			joinColumns = @JoinColumn(name = "maladie_id"),
 			inverseJoinColumns = @JoinColumn(name = "dossier_id"))
 	private List<DossierMedical> dossiersmedicaux = new ArrayList<>();
-	
-	
-	public Maladie() {}
 
-	public Maladie(String libelle)
-	{
-		super();
-		this.libelle = libelle;
-	}
 	
 }

@@ -36,7 +36,7 @@ public class DossierMedicalService implements IDossierMedical {
 
     @Override
     public List<DossierMedical> findAllById(Iterable<Long> longs) {
-        return null;
+        return repo.findAllById(longs);
     }
 
     @Override
@@ -45,33 +45,23 @@ public class DossierMedicalService implements IDossierMedical {
     }
 
     @Override
-    public void deleteById(Long aLong) {
-
-    }
+    public void deleteById(Long aLong) {repo.deleteById(aLong);}
 
     @Override
-    public void delete(DossierMedical entity) {
-
-    }
+    public void delete(DossierMedical entity) {repo.delete(entity);}
 
     @Override
-    public void deleteAllById(Iterable<? extends Long> longs) {
-
-    }
+    public void deleteAllById(Iterable<? extends Long> longs) {  repo.deleteAllById(longs);  }
 
     @Override
-    public void deleteAll(Iterable<? extends DossierMedical> entities) {
-
-    }
+    public void deleteAll(Iterable<? extends DossierMedical> entities) {repo.deleteAll(entities);    }
 
     @Override
-    public void deleteAll() {
-
-    }
+    public void deleteAll() {repo.deleteAll();}
 
     @Override
     public <S extends DossierMedical> S save(S entity) {
-        return null;
+        return repo.save(entity);
     }
 
     @Override
@@ -86,13 +76,11 @@ public class DossierMedicalService implements IDossierMedical {
 
     @Override
     public boolean existsById(Long aLong) {
-        return false;
+        return repo.existsById(aLong);
     }
 
     @Override
-    public void flush() {
-
-    }
+    public void flush() {    }
 
     @Override
     public <S extends DossierMedical> S saveAndFlush(S entity) {
@@ -105,19 +93,13 @@ public class DossierMedicalService implements IDossierMedical {
     }
 
     @Override
-    public void deleteAllInBatch(Iterable<DossierMedical> entities) {
-
-    }
+    public void deleteAllInBatch(Iterable<DossierMedical> entities) {    }
 
     @Override
-    public void deleteAllByIdInBatch(Iterable<Long> longs) {
-
-    }
+    public void deleteAllByIdInBatch(Iterable<Long> longs) {   }
 
     @Override
-    public void deleteAllInBatch() {
-
-    }
+    public void deleteAllInBatch() {    }
 
     @Override
     public DossierMedical getOne(Long aLong) {
@@ -141,7 +123,7 @@ public class DossierMedicalService implements IDossierMedical {
 
     @Override
     public <S extends DossierMedical> List<S> findAll(Example<S> example) {
-        return null;
+        return repo.findAll(example);
     }
 
     @Override
@@ -161,7 +143,7 @@ public class DossierMedicalService implements IDossierMedical {
 
     @Override
     public <S extends DossierMedical> boolean exists(Example<S> example) {
-        return false;
+        return repo.exists(example);
     }
 
     @Override

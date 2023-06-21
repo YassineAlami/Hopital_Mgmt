@@ -28,19 +28,19 @@ public class TraitementController
 	private TraitementService repo;
 	
 	@GetMapping("/Traitements")
-	public List<Traitement> getLit()
+	public List<Traitement> getTraitement()
 	{
 		return repo.findAll();
 	}
 
 	@PostMapping("/AddTraitements")
-	public Traitement createLit (@RequestBody Traitement t)
+	public Traitement createTraitement (@RequestBody Traitement t)
 	{
 		return repo.save(t);
 	}
 
 	@GetMapping("/Traitements/{id}")
-	public ResponseEntity<Traitement> getLitById(@PathVariable long id)
+	public ResponseEntity<Traitement> getTraitementById(@PathVariable long id)
 	{
 		Traitement t = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Traitement avec cet ID : "+id));
 
@@ -48,22 +48,19 @@ public class TraitementController
 	}
 
 	@PutMapping("/Traitements/{id}")
-	public ResponseEntity<Traitement> updateChambre (@RequestBody Traitement tDetails, @PathVariable long id) 
+	public ResponseEntity<Traitement> updateTraitement (@RequestBody Traitement tDetails, @PathVariable long id)
 	{
 		Traitement t = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Traitement avec cet ID : "+id));
-
 		t.setFrais(tDetails.getFrais());
 		t.setLibelle(tDetails.getLibelle());
-
 		Traitement updatedT = repo.save(t);
 		return ResponseEntity.ok(updatedT);
 	}
 
 	@DeleteMapping("/Traitements/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteLit (@PathVariable long id)
+	public ResponseEntity<Map<String, Boolean>> deleteTraitement (@PathVariable long id)
 	{
 		Traitement t = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Traitement avec cet ID : "+id));
-
 		repo.delete(t);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("Deleted", Boolean.TRUE);

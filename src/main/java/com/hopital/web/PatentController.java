@@ -20,6 +20,11 @@ public class PatentController
 	@NonNull
 	private PatientService repo;
 
+	@GetMapping("/Patient")
+	public Patient getPatient(long aLong){
+		return repo.findById(aLong).get();
+	}
+
 	@GetMapping("/Patients")
 	public List<Patient> getAllPatients()
 	{
@@ -38,7 +43,7 @@ public class PatentController
 		return ResponseEntity.ok(repo.findById(id).get());
 	}
 	
-	@PutMapping("Patients/{id}")
+	@PutMapping("updatePatients/{id}")
 	public ResponseEntity<Patient> updatePatient (@PathVariable Long id,@RequestBody Patient ptDetails)
 	{
 		Patient pt = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Patient avec cet ID : "+id));
@@ -52,7 +57,7 @@ public class PatentController
 		return ResponseEntity.ok(updatedPatient);
 	}
 	
-	@DeleteMapping("Patients/{id}")
+	@DeleteMapping("DeletePatients/{id}")
 	public ResponseEntity<Map<String, Boolean> > deletePatient (@PathVariable Long id)
 	{
 		repo.deleteById(id);

@@ -28,47 +28,38 @@ public class TypeMaladieController
 	private TypeMaladieService repo;
 	
 	@GetMapping("/TypesMaladies")
-	public List<TypeMaladie> getLit()
+	public List<TypeMaladie> getTypem()
 	{
 		return repo.findAll();
 	}
 
 	@PostMapping("/AddTypesMaladies")
-	public TypeMaladie createLit (@RequestBody TypeMaladie tm)
+	public TypeMaladie createTypem (@RequestBody TypeMaladie tm)
 	{
 		return repo.save(tm);
 	}
 
 	@GetMapping("/TypesMaladies/{id}")
-	public ResponseEntity<TypeMaladie> getLitById(@PathVariable long id)
+	public ResponseEntity<TypeMaladie> getTypemById(@PathVariable long id)
 	{
 		TypeMaladie tm = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Type de Maladie avec cet ID : "+id));
-
 		return ResponseEntity.ok(tm);
 	}
-
 	@PutMapping("/TypesMaladies/{id}")
-	public ResponseEntity<TypeMaladie> updateChambre (@RequestBody TypeMaladie tmDetails, @PathVariable long id) 
+	public ResponseEntity<TypeMaladie> updateTypem (@RequestBody TypeMaladie tmDetails, @PathVariable long id)
 	{
 		TypeMaladie tm = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Type de Maladie avec cet ID : "+id));
-
 		tm.setLibelle(tmDetails.getLibelle());
-
 		TypeMaladie updatedTm = repo.save(tm);
 		return ResponseEntity.ok(updatedTm);
 	}
-
 	@DeleteMapping("/TypesMaladies/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteLit (@PathVariable long id)
+	public ResponseEntity<Map<String, Boolean>> deleteTypem (@PathVariable long id)
 	{
 		TypeMaladie tm = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Type de Maladie avec cet ID : "+id));
-
 		repo.delete(tm);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("Deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);
 	}
-
-	
-
 }

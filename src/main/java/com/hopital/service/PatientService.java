@@ -62,17 +62,17 @@ public class PatientService implements IPatient {
 
     @Override
     public void deleteAllById(Iterable<? extends Long> longs) {
-
+        repo.deleteAllById(longs);
     }
 
     @Override
     public void deleteAll(Iterable<? extends Patient> entities) {
-
+        repo.deleteAll(entities);
     }
 
     @Override
     public void deleteAll() {
-
+        repo.deleteAll();
     }
 
     @Override
@@ -93,7 +93,7 @@ public class PatientService implements IPatient {
 
     @Override
     public boolean existsById(Long aLong) {
-        return false;
+        return repo.existsById(aLong);
     }
 
     @Override
@@ -168,7 +168,7 @@ public class PatientService implements IPatient {
 
     @Override
     public <S extends Patient> boolean exists(Example<S> example) {
-        return false;
+        return repo.exists(example);
     }
 
     @Override

@@ -37,7 +37,7 @@ public class OperationService implements IOperation {
 
     @Override
     public List<Operation> findAllById(Iterable<Long> longs) {
-        return null;
+        return repo.findAllById(longs);
     }
 
     @Override
@@ -47,47 +47,48 @@ public class OperationService implements IOperation {
 
     @Override
     public void deleteById(Long aLong) {
-
+        repo.deleteById(aLong);
     }
 
     @Override
     public void delete(Operation entity) {
-
+        repo.delete(entity);
     }
 
     @Override
     public void deleteAllById(Iterable<? extends Long> longs) {
-
+        repo.deleteAllById(longs);
     }
 
     @Override
     public void deleteAll(Iterable<? extends Operation> entities) {
-
+        repo.deleteAll(entities);
     }
 
     @Override
     public void deleteAll() {
-
+        repo.deleteAll();
     }
 
     @Override
     public <S extends Operation> S save(S entity) {
-        return null;
+        return repo.save(entity);
     }
 
     @Override
     public <S extends Operation> List<S> saveAll(Iterable<S> entities) {
-        return null;
+        return repo.saveAll(entities);
     }
 
     @Override
     public Optional<Operation> findById(Long aLong) {
-        return Optional.empty();
+        if (repo.existsById(aLong)) return repo.findById(aLong);
+        else return Optional.empty();
     }
 
     @Override
     public boolean existsById(Long aLong) {
-        return false;
+        return repo.existsById(aLong);
     }
 
     @Override
@@ -162,7 +163,7 @@ public class OperationService implements IOperation {
 
     @Override
     public <S extends Operation> boolean exists(Example<S> example) {
-        return false;
+        return repo.exists(example);
     }
 
     @Override

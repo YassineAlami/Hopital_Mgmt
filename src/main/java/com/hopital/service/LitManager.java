@@ -1,5 +1,9 @@
 package com.hopital.service;
 
+import com.hopital.entities.Admin;
+import com.hopital.exception.ResourceNotFoundException;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,11 +17,14 @@ import java.util.Optional;
 import java.util.function.Function;
 
 @Service
+@RequiredArgsConstructor
 public class LitManager implements ILit
 {
+	@NonNull
+	private ILit repo;
 	@Override
 	public List<Lit> findAll() {
-		return null;
+		return repo.findAll();
 	}
 
 	@Override
@@ -41,33 +48,34 @@ public class LitManager implements ILit
 	}
 
 	@Override
-	public void deleteById(Long aLong) {}
+	public void deleteById(Long aLong) {repo.deleteById(aLong);}
 
 	@Override
-	public void delete(Lit entity) {}
+	public void delete(Lit entity) {repo.delete(entity);}
 
 	@Override
-	public void deleteAllById(Iterable<? extends Long> longs) {	}
+	public void deleteAllById(Iterable<? extends Long> longs) {repo.deleteAllById(longs);	}
 
 	@Override
-	public void deleteAll(Iterable<? extends Lit> entities) {	}
+	public void deleteAll(Iterable<? extends Lit> entities) {	repo.deleteAll(entities);}
 
 	@Override
-	public void deleteAll() {}
+	public void deleteAll() {repo.deleteAll();}
 
 	@Override
 	public <S extends Lit> S save(S entity) {
-		return null;
+		return repo.save(entity);
 	}
 
 	@Override
 	public <S extends Lit> List<S> saveAll(Iterable<S> entities) {
-		return null;
+		return repo.saveAll(entities);
 	}
 
 	@Override
 	public Optional<Lit> findById(Long aLong) {
-		return Optional.empty();
+		Lit lt = repo.findById(aLong).orElseThrow(()-> new ResourceNotFoundException("Pas de Lit avec cet ID : "+aLong));
+		return Optional.ofNullable(lt);
 	}
 
 	@Override

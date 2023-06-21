@@ -20,6 +20,7 @@ import java.util.function.Function;
 public class ChambreService implements IChambre {
     @NonNull
     private IChambre repo;
+
     @Override
     public List<Chambre> findAll() {
         return repo.findAll();
@@ -46,54 +47,42 @@ public class ChambreService implements IChambre {
     }
 
     @Override
-    public void deleteById(Long aLong) {
-
-    }
+    public void deleteById(Long aLong) { repo.deleteById(aLong); }
 
     @Override
-    public void delete(Chambre entity) {
-
-    }
+    public void delete(Chambre entity) { repo.delete(entity); }
 
     @Override
-    public void deleteAllById(Iterable<? extends Long> longs) {
-
-    }
+    public void deleteAllById(Iterable<? extends Long> longs) { }
 
     @Override
-    public void deleteAll(Iterable<? extends Chambre> entities) {
-
-    }
+    public void deleteAll(Iterable<? extends Chambre> entities) { repo.deleteAll(entities);}
 
     @Override
-    public void deleteAll() {
-
-    }
+    public void deleteAll() { repo.deleteAll();}
 
     @Override
     public <S extends Chambre> S save(S entity) {
-        return null;
+        return repo.save(entity);
     }
 
     @Override
     public <S extends Chambre> List<S> saveAll(Iterable<S> entities) {
-        return null;
+        return saveAll(entities);
     }
 
     @Override
     public Optional<Chambre> findById(Long aLong) {
-        return Optional.empty();
+        return repo.findById(aLong);
     }
 
     @Override
     public boolean existsById(Long aLong) {
-        return false;
+        return repo.existsById(aLong);
     }
 
     @Override
-    public void flush() {
-
-    }
+    public void flush() { }
 
     @Override
     public <S extends Chambre> S saveAndFlush(S entity) {
@@ -106,23 +95,17 @@ public class ChambreService implements IChambre {
     }
 
     @Override
-    public void deleteAllInBatch(Iterable<Chambre> entities) {
-
-    }
+    public void deleteAllInBatch(Iterable<Chambre> entities) { }
 
     @Override
-    public void deleteAllByIdInBatch(Iterable<Long> longs) {
-
-    }
+    public void deleteAllByIdInBatch(Iterable<Long> longs) { }
 
     @Override
-    public void deleteAllInBatch() {
-
-    }
+    public void deleteAllInBatch() { }
 
     @Override
     public Chambre getOne(Long aLong) {
-        return null;
+        return repo.getOne(aLong);
     }
 
     @Override
@@ -142,7 +125,7 @@ public class ChambreService implements IChambre {
 
     @Override
     public <S extends Chambre> List<S> findAll(Example<S> example) {
-        return null;
+        return (List<S>) repo.findAll();
     }
 
     @Override
@@ -162,11 +145,10 @@ public class ChambreService implements IChambre {
 
     @Override
     public <S extends Chambre> boolean exists(Example<S> example) {
-        return false;
+        return !repo.exists(example);
+
     }
 
     @Override
-    public <S extends Chambre, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
-        return null;
-    }
+    public <S extends Chambre, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {return null;}
 }

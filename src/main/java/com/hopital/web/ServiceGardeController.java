@@ -50,9 +50,7 @@ public class ServiceGardeController
 	public ResponseEntity<ServiceGarde> updateServiceGarde (@RequestBody ServiceGarde sgDetails, @PathVariable long id) 
 	{
 		ServiceGarde sg = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Service de Garde avec cet ID : "+id));
-
 		sg.setDateservice(sgDetails.getDateservice());
-
 		ServiceGarde updatedSg = repo.save(sg);
 		return ResponseEntity.ok(updatedSg);
 	}

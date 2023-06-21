@@ -28,19 +28,19 @@ public class TypeVaccinController
 	private TypeVaccinService repo;
 
 	@GetMapping("/TypesVaccins")
-	public List<TypeVaccin> getLit()
+	public List<TypeVaccin> getTypev()
 	{
 		return repo.findAll();
 	}
 
 	@PostMapping("/AddTypesVaccins")
-	public TypeVaccin createLit (@RequestBody TypeVaccin tv)
+	public TypeVaccin createTypeV (@RequestBody TypeVaccin tv)
 	{
 		return repo.save(tv);
 	}
 
 	@GetMapping("/TypesVaccins/{id}")
-	public ResponseEntity<TypeVaccin> getLitById(@PathVariable long id)
+	public ResponseEntity<TypeVaccin> getTypeVById(@PathVariable long id)
 	{
 		TypeVaccin tv = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Type de Vaccin avec cet ID : "+id));
 
@@ -48,21 +48,18 @@ public class TypeVaccinController
 	}
 
 	@PutMapping("/TypesVaccins/{id}")
-	public ResponseEntity<TypeVaccin> updateChambre (@RequestBody TypeVaccin tvDetails, @PathVariable long id) 
+	public ResponseEntity<TypeVaccin> updateTypeV (@RequestBody TypeVaccin tvDetails, @PathVariable long id)
 	{
 		TypeVaccin tv = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Type de Vaccin avec cet ID : "+id));
-
 		tv.setLibelle(tvDetails.getLibelle());
-
 		TypeVaccin updatedTv = repo.save(tv);
 		return ResponseEntity.ok(updatedTv);
 	}
 
 	@DeleteMapping("/TypesVaccins/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteLit (@PathVariable long id)
+	public ResponseEntity<Map<String, Boolean>> deleteTypeV (@PathVariable long id)
 	{
 		TypeVaccin tv = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Type de Vaccin avec cet ID : "+id));
-
 		repo.delete(tv);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("Deleted", Boolean.TRUE);

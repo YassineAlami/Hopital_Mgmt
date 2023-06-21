@@ -22,7 +22,7 @@ public class ScannerService implements IScanner {
     private IScanner repo;
     @Override
     public List<Scanner> findAll() {
-        return null;
+        return findAll();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class ScannerService implements IScanner {
 
     @Override
     public List<Scanner> findAllById(Iterable<Long> longs) {
-        return null;
+        return repo.findAllById(longs);
     }
 
     @Override
@@ -46,48 +46,37 @@ public class ScannerService implements IScanner {
     }
 
     @Override
-    public void deleteById(Long aLong) {
-
-    }
+    public void deleteById(Long aLong) { repo.deleteById(aLong);   }
 
     @Override
-    public void delete(Scanner entity) {
-
-    }
+    public void delete(Scanner entity) { repo.delete(entity);   }
 
     @Override
-    public void deleteAllById(Iterable<? extends Long> longs) {
-
-    }
+    public void deleteAllById(Iterable<? extends Long> longs) { repo.deleteAllById(longs); }
 
     @Override
-    public void deleteAll(Iterable<? extends Scanner> entities) {
-
-    }
+    public void deleteAll(Iterable<? extends Scanner> entities) { repo.deleteAll(entities); }
 
     @Override
-    public void deleteAll() {
-
-    }
+    public void deleteAll() { repo.deleteAll(); }
 
     @Override
-    public <S extends Scanner> S save(S entity) {
-        return null;
-    }
+    public <S extends Scanner> S save(S entity) { return repo.save(entity); }
 
     @Override
     public <S extends Scanner> List<S> saveAll(Iterable<S> entities) {
-        return null;
+        return repo.saveAll(entities);
     }
 
     @Override
     public Optional<Scanner> findById(Long aLong) {
-        return Optional.empty();
+        if (repo.existsById(aLong)) return repo.findById(aLong);
+        else return Optional.empty();
     }
 
     @Override
     public boolean existsById(Long aLong) {
-        return false;
+       return repo.existsById(aLong);
     }
 
     @Override
@@ -142,7 +131,7 @@ public class ScannerService implements IScanner {
 
     @Override
     public <S extends Scanner> List<S> findAll(Example<S> example) {
-        return null;
+        return repo.findAll(example);
     }
 
     @Override
@@ -162,7 +151,7 @@ public class ScannerService implements IScanner {
 
     @Override
     public <S extends Scanner> boolean exists(Example<S> example) {
-        return false;
+        return repo.exists(example);
     }
 
     @Override

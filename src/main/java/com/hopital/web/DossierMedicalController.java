@@ -21,7 +21,7 @@ public class DossierMedicalController
 	private DossierMedicalService repo;
 	
 	@GetMapping("/DossiersMedicaux")
-	public List<DossierMedical> getLit()
+	public List<DossierMedical> getDossier()
 	{
 		return repo.findAll();
 	}
@@ -33,18 +33,16 @@ public class DossierMedicalController
 	}
 
 	@GetMapping("/DossiersMedicaux/{id}")
-	public ResponseEntity<DossierMedical> getLitById(@PathVariable long id)
+	public ResponseEntity<DossierMedical> getDossierById(@PathVariable long id)
 	{
 		DossierMedical dm = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Dossier Medical avec cet ID : "+id));
-
 		return ResponseEntity.ok(dm);
 	}
 
 	@DeleteMapping("/DossiersMedicaux/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteLit (@PathVariable long id)
+	public ResponseEntity<Map<String, Boolean>> deleteDossier (@PathVariable long id)
 	{
 		DossierMedical dm = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Dossier Medical avec cet ID : "+id));
-
 		repo.delete(dm);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("Deleted", Boolean.TRUE);

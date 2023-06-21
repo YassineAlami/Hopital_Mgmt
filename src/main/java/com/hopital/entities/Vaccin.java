@@ -14,8 +14,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-@Data
+@Data @NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table (name = "vaccins")
 public class Vaccin
@@ -23,6 +27,7 @@ public class Vaccin
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@NonNull
 	private String libelle;
 	
 	@ManyToOne
@@ -33,12 +38,4 @@ public class Vaccin
 			joinColumns = @JoinColumn(name = "vaccin_id"),
 			inverseJoinColumns = @JoinColumn(name = "dossier_id"))
 	private List<DossierMedical> dossiersmedicaux = new ArrayList<>();
-	
-	public Vaccin () {}
-
-	public Vaccin(String libelle)
-	{
-		super();
-		this.libelle = libelle;
-	}
 }

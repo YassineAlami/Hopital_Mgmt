@@ -47,7 +47,6 @@ public class ChambreController
 	public ResponseEntity<Chambre> getChambreById(@PathVariable long id)
 	{
 		Chambre ch = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Chambre avec cet ID : "+id));
-		
 		return ResponseEntity.ok(ch);
 	}	
 	
@@ -57,7 +56,6 @@ public class ChambreController
 		Chambre ch = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Chambre avec cet ID : "+id));
 		ch.setNum(chDetails.getNum());
 		ch.setType(chDetails.getType());
-		
 		Chambre updatedCh = repo.save(ch);
 		return ResponseEntity.ok(updatedCh);
 	}
@@ -66,7 +64,6 @@ public class ChambreController
 	public ResponseEntity<Map<String, Boolean>> deleteChambre (@PathVariable long id)
 	{
 		Chambre ch = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Chambre avec cet ID : "+id));
-		
 		repo.delete(ch);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("Deleted", Boolean.TRUE);

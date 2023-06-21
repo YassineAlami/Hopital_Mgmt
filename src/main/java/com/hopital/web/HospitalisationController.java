@@ -25,47 +25,41 @@ public class HospitalisationController
 	
 	
 	@GetMapping("/Hospitalisations")
-	public List<Hospitalisation> getLit()
+	public List<Hospitalisation> getHospitalisation()
 	{
 		return repo.findAll();
 	}
 
 	@PostMapping("/Hospitalisations/{iddm}")
-	public Hospitalisation createDossierMedical (@RequestBody Hospitalisation h, @PathVariable long iddm)
+	public Hospitalisation createHospitalisation (@RequestBody Hospitalisation h, @PathVariable long iddm)
 	{
 		DossierMedical dm = dmrepo.findById(iddm).orElseThrow(()-> new ResourceNotFoundException("Pas de Dossier Medical avec cet ID : "+iddm));
-		
 		h.setDossiermedical(dm);
-		
 		return repo.save(h);
 	}
 
 	@GetMapping("/Hospitalisations/{id}")
-	public ResponseEntity<Hospitalisation> getLitById(@PathVariable long id)
+	public ResponseEntity<Hospitalisation> getHospitalisationById(@PathVariable long id)
 	{
 		Hospitalisation h = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas d'Hospitalisation avec cet ID : "+id));
-
 		return ResponseEntity.ok(h);
 	}
 
 	@PutMapping("/Hospitalisations/{id}")
-	public ResponseEntity<Hospitalisation> updateChambre (@RequestBody Hospitalisation hDetails, @PathVariable long id) 
+	public ResponseEntity<Hospitalisation> updateHospitalisation (@RequestBody Hospitalisation hDetails, @PathVariable long id)
 	{
 		Hospitalisation h = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas d'Hospitalisation avec cet ID : "+id));
-
 		h.setDateEntree(hDetails.getDateEntree());
 		h.setDateSortie(hDetails.getDateSortie());
 		h.setDossiermedical(hDetails.getDossiermedical());
-		
 		Hospitalisation updatedH = repo.save(h);
 		return ResponseEntity.ok(updatedH);
 	}
 
 	@DeleteMapping("/Hospitalisations/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteLit (@PathVariable long id)
+	public ResponseEntity<Map<String, Boolean>> deleteHospitalisation (@PathVariable long id)
 	{
 		Hospitalisation h = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas d'Hospitalisation avec cet ID : "+id));
-
 		repo.delete(h);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("Deleted", Boolean.TRUE);

@@ -27,19 +27,19 @@ public class SpecialiteController
 	private SpecialiteService repo;
 	
 	@GetMapping("/Specialites")
-	public List<Specialite> getLit()
+	public List<Specialite> getSpecialite()
 	{
 		return repo.findAll();
 	}
 
 	@PostMapping("/AddSpecialites")
-	public Specialite createLit (@RequestBody Specialite s)
+	public Specialite createSpecialite (@RequestBody Specialite s)
 	{
 		return repo.save(s);
 	}
 
 	@GetMapping("/Specialites/{id}")
-	public ResponseEntity<Specialite> getLitById(@PathVariable long id)
+	public ResponseEntity<Specialite> getSpecialiteById(@PathVariable long id)
 	{
 		Specialite s = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Specialite avec cet ID : "+id));
 
@@ -47,21 +47,18 @@ public class SpecialiteController
 	}
 
 	@PutMapping("/Specialites/{id}")
-	public ResponseEntity<Specialite> updateChambre (@RequestBody Specialite mDetails, @PathVariable long id) 
+	public ResponseEntity<Specialite> updateSpacialite (@RequestBody Specialite mDetails, @PathVariable long id)
 	{
 		Specialite s = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Specialite avec cet ID : "+id));
-
 		s.setLibelle(mDetails.getLibelle());
-
 		Specialite updatedS = repo.save(s);
 		return ResponseEntity.ok(updatedS);
 	}
 
 	@DeleteMapping("/Specialites/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteLit (@PathVariable long id)
+	public ResponseEntity<Map<String, Boolean>> deleteSpecialite (@PathVariable long id)
 	{
 		Specialite s = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Specialite avec cet ID : "+id));
-
 		repo.delete(s);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("Deleted", Boolean.TRUE);

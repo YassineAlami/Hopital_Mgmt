@@ -3,7 +3,8 @@ package com.hopital.service;
 import com.hopital.entities.Vaccin;
 import com.hopital.repo.IVaccin;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,10 +16,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 @Service
-@RequiredArgsConstructor
 public class VaccinService implements IVaccin {
+
     @NonNull
-    private IVaccin repo;
+    private final IVaccin repo;
+
+    public VaccinService(@Qualifier("IVaccin") IVaccin repo) {
+        this.repo = repo;
+
+    }
+
     @Override
     public List<Vaccin> findAll() {
         return repo.findAll();
@@ -36,7 +43,7 @@ public class VaccinService implements IVaccin {
 
     @Override
     public List<Vaccin> findAllById(Iterable<Long> longs) {
-        return null;
+        return repo.findAllById(longs);
     }
 
     @Override
@@ -45,48 +52,38 @@ public class VaccinService implements IVaccin {
     }
 
     @Override
-    public void deleteById(Long aLong) {
-
-    }
+    public void deleteById(Long aLong) { repo.deleteById(aLong); }
 
     @Override
-    public void delete(Vaccin entity) {
-
-    }
+    public void delete(Vaccin entity) { repo.delete(entity); }
 
     @Override
-    public void deleteAllById(Iterable<? extends Long> longs) {
-
-    }
+    public void deleteAllById(Iterable<? extends Long> longs) { repo.deleteAllById(longs); }
 
     @Override
-    public void deleteAll(Iterable<? extends Vaccin> entities) {
-
-    }
+    public void deleteAll(Iterable<? extends Vaccin> entities) { repo.deleteAll(entities); }
 
     @Override
-    public void deleteAll() {
-
-    }
+    public void deleteAll() { repo.deleteAll(); }
 
     @Override
     public <S extends Vaccin> S save(S entity) {
-        return null;
+        return repo.save(entity);
     }
 
     @Override
     public <S extends Vaccin> List<S> saveAll(Iterable<S> entities) {
-        return null;
+        return repo.saveAll(entities);
     }
 
     @Override
     public Optional<Vaccin> findById(Long aLong) {
-        return Optional.empty();
+        return Optional.ofNullable(repo.findById(aLong).get());
     }
 
     @Override
     public boolean existsById(Long aLong) {
-        return false;
+        return repo.existsById(aLong);
     }
 
     @Override
@@ -141,7 +138,7 @@ public class VaccinService implements IVaccin {
 
     @Override
     public <S extends Vaccin> List<S> findAll(Example<S> example) {
-        return null;
+        return repo.findAll(example);
     }
 
     @Override
@@ -161,7 +158,7 @@ public class VaccinService implements IVaccin {
 
     @Override
     public <S extends Vaccin> boolean exists(Example<S> example) {
-        return false;
+        return repo.exists(example);
     }
 
     @Override

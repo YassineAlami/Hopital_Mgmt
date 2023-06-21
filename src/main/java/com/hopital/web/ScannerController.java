@@ -27,19 +27,19 @@ public class ScannerController
 	private ScannerService repo;
 
 	@GetMapping("/Scanners")
-	public List<Scanner> getLit()
+	public List<Scanner> getScanner()
 	{
 		return repo.findAll();
 	}
 
 	@PostMapping("/Scanners")
-	public Scanner createLit (@RequestBody Scanner tv)
+	public Scanner createScanner (@RequestBody Scanner tv)
 	{
 		return repo.save(tv);
 	}
 
 	@GetMapping("/Scanners/{id}")
-	public ResponseEntity<Scanner> getLitById(@PathVariable long id)
+	public ResponseEntity<Scanner> getScannerById(@PathVariable long id)
 	{
 		Scanner s = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Scanner avec cet ID : "+id));
 
@@ -47,7 +47,7 @@ public class ScannerController
 	}
 
 	@PutMapping("/Scanners/{id}")
-	public ResponseEntity<Scanner> updateChambre (@RequestBody Scanner sDetails, @PathVariable long id) 
+	public ResponseEntity<Scanner> updateScanner (@RequestBody Scanner sDetails, @PathVariable long id)
 	{
 		Scanner s = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Scanner avec cet ID : "+id));
 
@@ -58,10 +58,9 @@ public class ScannerController
 	}
 
 	@DeleteMapping("/Scanners/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteLit (@PathVariable long id)
+	public ResponseEntity<Map<String, Boolean>> deleteScanner (@PathVariable long id)
 	{
 		Scanner s = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pas de Scanner avec cet ID : "+id));
-
 		repo.delete(s);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("Deleted", Boolean.TRUE);

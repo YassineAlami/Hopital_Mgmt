@@ -48,47 +48,48 @@ public class MaladieService implements IMaladie {
 
     @Override
     public void deleteById(Long aLong) {
-
+        repo.deleteById(aLong);
     }
 
     @Override
     public void delete(Maladie entity) {
-
+        repo.delete(entity);
     }
 
     @Override
     public void deleteAllById(Iterable<? extends Long> longs) {
-
+            repo.deleteAllById(longs);
     }
 
     @Override
     public void deleteAll(Iterable<? extends Maladie> entities) {
-
+        repo.deleteAll(entities);
     }
 
     @Override
     public void deleteAll() {
-
+        repo.deleteAll();
     }
 
     @Override
     public <S extends Maladie> S save(S entity) {
-        return null;
+        return repo.save(entity);
     }
 
     @Override
     public <S extends Maladie> List<S> saveAll(Iterable<S> entities) {
-        return null;
+        return repo.saveAll(entities);
     }
 
     @Override
     public Optional<Maladie> findById(Long aLong) {
+        if (repo.existsById(aLong)) return repo.findById(aLong);
         return Optional.empty();
     }
 
     @Override
     public boolean existsById(Long aLong) {
-        return false;
+        return repo.existsById(aLong);
     }
 
     @Override
@@ -148,7 +149,7 @@ public class MaladieService implements IMaladie {
 
     @Override
     public <S extends Maladie> List<S> findAll(Example<S> example) {
-        return null;
+        return repo.findAll(example);
     }
 
     @Override
@@ -168,7 +169,7 @@ public class MaladieService implements IMaladie {
 
     @Override
     public <S extends Maladie> boolean exists(Example<S> example) {
-        return false;
+        return repo.exists(example);
     }
 
     @Override
